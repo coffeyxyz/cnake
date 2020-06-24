@@ -1,2 +1,4 @@
+#include <stdbool.h>
+
 #define SWIDTH	80
-#define	SHEIGHT	40
+#define	SHEIGHT	24
