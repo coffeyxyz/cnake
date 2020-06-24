@@ -5,8 +5,6 @@
 #include "engine.h"
 #include "screen.h"
 
-#define	MAXFOOD	20
-
 struct PlayerNode {
 	int y_pos;
 	int x_pos;
@@ -25,7 +23,12 @@ static struct PlayerNode *head;
 static char direction = 'd';
 
 static struct Food *food_array[MAXFOOD];
-static int food_array_ptr = 0;
+static unsigned int food_array_ptr = 0;
+static unsigned int food_timer = 0;
+
+static unsigned long score = 0;
+static unsigned int cnake_length = 1;
+static unsigned int score_timer = 0;
 
 void engine_setup(void)
 {
@@ -39,16 +42,14 @@ void engine_setup(void)
 	head->x_pos = 0;
 	head->next = NULL;
 
-	create_food(5);
+	create_food(STARTFOOD);
 }
 
 bool engine_step(void)
 {
-	/* Checking for user input. */
 	int ch = getch();
 	if (ch == 'w' || ch == 'd' || ch == 's' || ch == 'a')
 	{
-
 		/* If snake length is 1. */
 		if (head->next == NULL)
 		{
@@ -92,19 +93,19 @@ bool engine_step(void)
 			break;
 		case 's' :
 			y_next += 1;
-        	break;
-        case 'a' :
+			break;
+		case 'a' :
 			x_next -= 1;
-        	break;
+			break;
 	}
 
-	/* If next element is wall or snake: gameover */
+	/* If the next element is wall or cnake, gameover. */
 	if (is_solid(y_next, x_next))
 	{
 		return false;
 	}
 
-	/* Next cell becomes new head, with the old head as it's next. */
+	/* Next cell becomes new head, with the old head as it's next node. */
 	{
 		struct PlayerNode *temp = (struct PlayerNode *)malloc(sizeof(struct PlayerNode));
 		temp->y_pos = y_next;
@@ -112,14 +113,15 @@ bool engine_step(void)
 		temp->next = head;
 
 		head = temp;
+		++cnake_length;
 	}
 
-	/* If next element was a piece of food, delete it. */
+	/* If next element was a piece of food, delete the food. */
 	if (is_food(y_next, x_next))
 	{
 		delete_food(y_next, x_next);
 	}
-	/* Else delete the last player node. */
+	/* Else delete the last node of the cnake. */
 	else
 	{
 		struct PlayerNode *current = head;
@@ -129,9 +131,10 @@ bool engine_step(void)
 		}
 		free(current->next);
 		current->next = NULL;
+		--cnake_length;
 	}
 
-	/* Update player cells. */
+	/* Update cnake cells. */
 	{
 		grid_clear();
 		struct PlayerNode *temp = head;
@@ -142,23 +145,37 @@ bool engine_step(void)
 		}
 	}
 
-	// if time to create food:
-	//   create food
+	if (food_timer > FOOD_TIME * FRAMERATE)
+	{
+		create_food(1);
+		food_timer = -1;
+	}
 
+	/* Update food cells. */
 	for (int i = 0; i < food_array_ptr; ++i)
 	{
 		struct Food *food_item = food_array[i];
 		grid[food_item->y_pos][food_item->x_pos] = food_item->symbol;
 	}
 
+	if (score_timer > SCORE_TIME * FRAMERATE)
+	{
+		score += cnake_length;
+		score_timer = -1;
+	}
+
+	++food_timer;
+	++score_timer;
 	screen_update(grid);
 
 	return true;
 }
 
-void engine_kill(void)
+unsigned long engine_kill(void)
 {
 	screen_kill();
+
+	return score;
 }
 
 static void grid_clear(void)

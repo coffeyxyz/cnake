@@ -1,8 +1,11 @@
 #include <unistd.h>
+#include <stdbool.h>
 #include <stdio.h>
 
 #include "includes.h"
 #include "engine.h"
+
+#define FRAMESLEEP(X) usleep(1000000/X)
 
 int main(int argc, char **argv)
 {
@@ -12,12 +15,12 @@ int main(int argc, char **argv)
 	while (!gameover)
 	{
 		gameover = !engine_step();
-		usleep(1000000/5);
+		FRAMESLEEP(FRAMERATE);
 	}
 
-	engine_kill();
+	int score = engine_kill();
 
-	printf("Gameover!\n");
+	printf("Gameover! Your final score was: %d\n", score);
 
 	return 0;
 }
