@@ -1,7 +1,7 @@
-#define SHEIGHT	24          // Desired terminal height.
-#define SWIDTH	80          // Desired terminal width.
+#define SHEIGHT	22          // Screen height.
+#define SWIDTH	78          // Screen width.
 
-#define FRAMERATE   10       // Number of frames per second.
+#define FRAMERATE   10      // Number of frames per second, also, gamespeed.
 
 #define STARTFOOD   3       // Pieces of food on screen at the start.
 #define	MAXFOOD		20      // Maximum pieces of food allowed on screen.

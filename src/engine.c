@@ -237,6 +237,7 @@ static bool is_solid(int y_pos, int x_pos)
 	{
 		return true;
 	}
+
 	return false;
 }
 

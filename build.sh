@@ -1,3 +1,3 @@
 cd src
-gcc -o ../cnake main.c engine.c screen.c -lncurses
+gcc -o ../cnake -g main.c engine.c screen.c -lncurses
 cd ../
