@@ -166,7 +166,7 @@ bool engine_step(void)
 
 	++food_timer;
 	++score_timer;
-	screen_update(grid);
+	screen_update(grid, score);
 
 	return true;
 }
