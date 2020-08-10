@@ -48,18 +48,13 @@ void engine_setup(void)
 bool engine_step(void)
 {
 	int ch = getch();
-	if (ch == 'w' || ch == 'd' || ch == 's' || ch == 'a')
-	{
+	if (ch == 'w' || ch == 'd' || ch == 's' || ch == 'a') {
 		/* If snake length is 1. */
-		if (head->next == NULL)
-		{
+		if (head->next == NULL) {
 			direction = ch;
-		}
 		/* Else prevent doubling over on self. */
-		else
-		{
-			switch (direction)
-			{
+		} else {
+			switch (direction) {
 				case 'w' :
 					if (ch != 's')
 						direction = ch;
@@ -83,8 +78,7 @@ bool engine_step(void)
 	int y_next = head->y_pos;
 	int x_next = head->x_pos;
 
-	switch (direction)
-	{
+	switch (direction) {
 		case 'w' :
 			y_next -= 1;
 			break;
@@ -100,8 +94,7 @@ bool engine_step(void)
 	}
 
 	/* If the next element is wall or cnake, gameover. */
-	if (is_solid(y_next, x_next))
-	{
+	if (is_solid(y_next, x_next)) {
 		return false;
 	}
 
@@ -117,16 +110,12 @@ bool engine_step(void)
 	}
 
 	/* If next element was a piece of food, delete the food. */
-	if (is_food(y_next, x_next))
-	{
+	if (is_food(y_next, x_next)) {
 		delete_food(y_next, x_next);
-	}
 	/* Else delete the last node of the cnake. */
-	else
-	{
+	} else {
 		struct PlayerNode *current = head;
-		while (current->next->next != NULL)
-		{
+		while (current->next->next != NULL) {
 			current = current->next;
 		}
 		free(current->next);
@@ -138,28 +127,24 @@ bool engine_step(void)
 	{
 		grid_clear();
 		struct PlayerNode *temp = head;
-		while (temp != NULL)
-		{
+		while (temp != NULL) {
 			grid[temp->y_pos][temp->x_pos] = '@';
 			temp = temp->next;
 		}
 	}
 
-	if (food_timer > FOOD_TIME * FRAMERATE)
-	{
+	if (food_timer > FOOD_TIME * FRAMERATE) {
 		create_food(1);
 		food_timer = -1;
 	}
 
 	/* Update food cells. */
-	for (int i = 0; i < food_array_ptr; ++i)
-	{
+	for (int i = 0; i < food_array_ptr; ++i) {
 		struct Food *food_item = food_array[i];
 		grid[food_item->y_pos][food_item->x_pos] = food_item->symbol;
 	}
 
-	if (score_timer > SCORE_TIME * FRAMERATE)
-	{
+	if (score_timer > SCORE_TIME * FRAMERATE) {
 		score += cnake_length;
 		score_timer = -1;
 	}
@@ -180,19 +165,17 @@ unsigned long engine_kill(void)
 
 static void grid_clear(void)
 {
-	for (int i = 0; i < SHEIGHT*SWIDTH; ++i)
-	{
+	for (int i = 0; i < SHEIGHT*SWIDTH; ++i) {
 		grid[i/SWIDTH][i%SWIDTH] = ' ';
 	}
 }
 
 static void create_food(int number)
 {
-	for (int i = 0; food_array_ptr < MAXFOOD && i < number; ++i)
-	{
+
+	for (int i = 0; food_array_ptr < MAXFOOD && i < number; ++i) {
 		int y = -1, x = -1;
-		while (y == -1 || grid[y][x] == '@')
-		{
+		while (y == -1 || grid[y][x] == '@') {
 			y = rand()%SHEIGHT;
 			x = rand()%SWIDTH;
 		}
@@ -208,18 +191,15 @@ static void delete_food(int y_pos, int x_pos)
 {
 	int temp_ptr = 0;
 
-	while (temp_ptr < food_array_ptr)
-	{
+	while (temp_ptr < food_array_ptr) {
 		if (food_array[temp_ptr]->y_pos == y_pos
-			&& food_array[temp_ptr]->x_pos == x_pos)
-		{
+		 && food_array[temp_ptr]->x_pos == x_pos) {
 			break;
 		}
 		++temp_ptr;
 	}
 
-	while (temp_ptr < food_array_ptr-1)
-	{
+	while (temp_ptr < food_array_ptr-1) {
 		food_array[temp_ptr] = food_array[temp_ptr + 1];
 		++temp_ptr;
 	}
@@ -229,12 +209,9 @@ static void delete_food(int y_pos, int x_pos)
 
 static bool is_solid(int y_pos, int x_pos)
 {
-	if (y_pos < 0 || y_pos >= SHEIGHT || x_pos < 0 || x_pos >= SWIDTH)
-	{
+	if (y_pos < 0 || y_pos >= SHEIGHT || x_pos < 0 || x_pos >= SWIDTH) {
 		return true;
-	}
-	else if (grid[y_pos][x_pos] == '@')
-	{
+	} else if (grid[y_pos][x_pos] == '@') {
 		return true;
 	}
 
@@ -243,10 +220,8 @@ static bool is_solid(int y_pos, int x_pos)
 
 static bool is_food(int y_pos, int x_pos)
 {
-	for (int i=0; i<food_array_ptr; ++i)
-	{
-		if (food_array[i]->y_pos == y_pos && food_array[i]->x_pos == x_pos)
-		{
+	for (int i=0; i<food_array_ptr; ++i) {
+		if (food_array[i]->y_pos == y_pos && food_array[i]->x_pos == x_pos) {
 			return true;
 		}
 	}

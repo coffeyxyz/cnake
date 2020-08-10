@@ -12,8 +12,7 @@ int main(int argc, char **argv)
 	engine_setup();
 
 	bool gameover = false;
-	while (!gameover)
-	{
+	while (!gameover) {
 		gameover = !engine_step();
 		FRAMESLEEP(FRAMERATE);
 	}
