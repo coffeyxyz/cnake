@@ -49,10 +49,8 @@ bool engine_step(void)
 {
 	int ch = getch();
 	if (ch == 'w' || ch == 'd' || ch == 's' || ch == 'a') {
-		/* If snake length is 1. */
 		if (head->next == NULL) {
 			direction = ch;
-		/* Else prevent doubling over on self. */
 		} else {
 			switch (direction) {
 				case 'w' :

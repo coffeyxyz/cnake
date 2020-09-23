@@ -12,11 +12,9 @@ void screen_setup(void)
 	nodelay(stdscr, true);
 	curs_set(0);
 
-	/* Score counter.*/
 	move(0,0);
 	printw("Score: ");
 
-	/* Setting up wall. */
 	move(1,0);
 	for (int i = 0; i < SWIDTH+2; ++i) {
 		addch('#');
