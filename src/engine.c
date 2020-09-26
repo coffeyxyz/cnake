@@ -126,8 +126,10 @@ bool engine_step(void)
 	{
 		grid_clear();
 		struct PlayerNode *temp = head;
+		grid[temp->y_pos][temp->x_pos] = '@';
+		temp = temp->next;
 		while (temp != NULL) {
-			grid[temp->y_pos][temp->x_pos] = '@';
+			grid[temp->y_pos][temp->x_pos] = '+';
 			temp = temp->next;
 		}
 	}
