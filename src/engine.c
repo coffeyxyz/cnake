@@ -51,7 +51,8 @@ bool engine_step(void)
 	if (ch == 'w' || ch == 'd' || ch == 's' || ch == 'a') {
 		if (head->next == NULL) {
 			direction = ch;
-		} else {
+		}
+		else {
 			switch (direction) {
 				case 'w' :
 					if (ch != 's')
