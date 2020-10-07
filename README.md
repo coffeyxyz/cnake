@@ -3,21 +3,12 @@
 Snake game.
 
 
-## Configure
-
-There are several settings which can be adjusted within the src/includes.h
-file.
-
-The `SHEIGHT` and `SWIDTH` macros represent the size of the game grid.
-
-
 ## Installation
 
-To install cnake, clone the repo and run make:
+Clone the repo and build using make.
 ```
 git clone https://github.com/foggynight/cnake
-cd cnake
-make
+cd cnake && make
 ```
 
 
