@@ -45,7 +45,7 @@ void engine_setup(void)
 	create_food(STARTFOOD);
 }
 
-bool engine_step(void)
+int engine_step(void)
 {
 	int ch = getch();
 	if (ch == 'w' || ch == 'd' || ch == 's' || ch == 'a') {
@@ -93,8 +93,8 @@ bool engine_step(void)
 	}
 
 	/* If the next element is wall or cnake, gameover. */
-	if (is_solid(y_next, x_next)) {
-		return false;
+	if (is_solid(y_next, x_next) || is_snake(y_next, x_next)) {
+		return 0;
 	}
 
 	/* Next cell becomes new head, with the old head as it's next node. */
@@ -168,7 +168,7 @@ bool engine_step(void)
 	++score_timer;
 	screen_update(grid, score);
 
-	return true;
+	return 1;
 }
 
 unsigned long engine_kill(void)
@@ -189,15 +189,17 @@ static void create_food(int number)
 {
 
 	for (int i = 0; food_array_ptr < MAXFOOD && i < number; ++i) {
-		int y = -1, x = -1;
-		while (y == -1 || grid[y][x] == '@') {
+		int y, x;
+		do {
 			y = rand()%SHEIGHT;
 			x = rand()%SWIDTH;
-		}
+		} while (is_snake(y, x));
 
 		struct Food *food_item = (struct Food *)malloc(sizeof(struct Food));
-		struct Food temp = {y, x, 'F'};
-		*food_item = temp;
+		(*food_item).y_pos = y;
+		(*food_item).x_pos = x;
+		(*food_item).symbol = 'F';
+
 		food_array[food_array_ptr++] = food_item;
 	}
 }
@@ -222,24 +224,38 @@ static void delete_food(int y_pos, int x_pos)
 	--food_array_ptr;
 }
 
-static bool is_solid(int y_pos, int x_pos)
+static int is_solid(int y_pos, int x_pos)
 {
 	if (y_pos < 0 || y_pos >= SHEIGHT || x_pos < 0 || x_pos >= SWIDTH) {
-		return true;
-	} else if (grid[y_pos][x_pos] == '@') {
-		return true;
+		return 1;
+	} else if (is_snake(y_pos, x_pos)) {
+		return 1;
 	}
 
-	return false;
+	return 0;
 }
 
-static bool is_food(int y_pos, int x_pos)
+static int is_snake(int y_pos, int x_pos)
+{
+	switch (grid[y_pos][x_pos]) {
+	case 'A':
+	case '<':
+	case 'V':
+	case '>':
+	case '+':
+		return 1;
+	default:
+		return 0;
+	}
+}
+
+static int is_food(int y_pos, int x_pos)
 {
 	for (int i=0; i<food_array_ptr; ++i) {
 		if (food_array[i]->y_pos == y_pos && food_array[i]->x_pos == x_pos) {
-			return true;
+			return 1;
 		}
 	}
 
-	return false;
+	return 0;
 }
