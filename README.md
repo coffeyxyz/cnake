@@ -22,7 +22,7 @@ cd cnake && make
 
 ## Dependencies
 
-1. GNU C Compiler
-2. NCurses library
+- GNU C Compiler
+- NCurses library
 
 **NOTE:** The NCurses library is typically shipped with the GNU C Compiler.
