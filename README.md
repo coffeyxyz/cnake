@@ -2,15 +2,14 @@
 
 Snake game.
 
-
 ## Installation
 
 Clone the repo and build using make.
 ```
 git clone https://github.com/foggynight/cnake
-cd cnake && make
+cd cnake
+make
 ```
-
 
 ## Controls
 
@@ -18,7 +17,6 @@ cd cnake && make
 - `CTRL+S` - Freeze the terminal
 - `CTRL+Q` - Unfreeze the terminal
 - `CTRL+C` - Exit cnake
-
 
 ## Dependencies
 
