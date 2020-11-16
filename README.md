@@ -4,11 +4,20 @@ Snake game.
 
 ## Installation
 
-Clone the repo and build using make.
 ```
 git clone https://github.com/foggynight/cnake
 cd cnake
 make
+```
+
+## Usage
+
+cnake can be configured using the `src/includes.h` source file, be sure to
+rebuild using `make` should you make any changes.
+
+To play cnake, execute the `cnake` file.
+```
+./cnake
 ```
 
 ## Controls
@@ -23,4 +32,4 @@ make
 - GNU C Compiler
 - NCurses library
 
-**NOTE:** The NCurses library is typically shipped with the GNU C Compiler.
+**Note:** The NCurses library is typically shipped with the GNU C Compiler.
