@@ -4,7 +4,7 @@ Snake game.
 
 ## Installation
 
-```
+```bash
 git clone https://github.com/foggynight/cnake
 cd cnake
 make
@@ -16,7 +16,7 @@ cnake can be configured using the `src/includes.h` source file, be sure to
 rebuild using `make` should you make any changes.
 
 To play cnake, execute the `cnake` file.
-```
+```bash
 ./cnake
 ```
 
