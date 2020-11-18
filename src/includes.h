@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-2.0
+// Copyright (C) 2020 Robert Coffey
+
 #define SWIDTH     20 // Game grid width
 #define SHEIGHT    10 // Game grid height
 

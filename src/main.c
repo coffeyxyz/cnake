@@ -1,3 +1,11 @@
+// SPDX-License-Identifier: GPL-2.0
+// Copyright (C) 2020 Robert Coffey
+/**
+ * --- cnake ---
+ *
+ * Classic snake, but with a c.
+ */
+
 #include <unistd.h>
 #include <stdbool.h>
 #include <stdio.h>
