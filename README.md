@@ -29,7 +29,7 @@ To play cnake, execute the `cnake` file.
 
 ## Dependencies
 
-- GNU C Compiler
+- GNU C compiler
 - NCurses library
 
 **Note:** The NCurses library is typically shipped with the GNU C Compiler.
