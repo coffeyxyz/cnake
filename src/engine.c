@@ -2,9 +2,11 @@
 // Copyright (C) 2020 Robert Coffey
 
 #include <ncurses.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-#include "includes.h"
+#include "config.h"
 #include "engine.h"
 #include "screen.h"
 
@@ -38,7 +40,7 @@ void engine_setup(void)
     grid_clear();
     screen_setup();
 
-    srand(1);
+    srand(clock());
 
     head = (struct PlayerNode *)malloc(sizeof(struct PlayerNode));
     head->y_pos = 0;
@@ -114,8 +116,9 @@ int engine_step(void)
     /* If next element was a piece of food, delete the food. */
     if (is_food(y_next, x_next)) {
         delete_food(y_next, x_next);
+    }
     /* Else delete the last node of the cnake. */
-    } else {
+    else {
         struct PlayerNode *current = head;
         while (current->next->next != NULL) {
             current = current->next;
@@ -151,7 +154,7 @@ int engine_step(void)
         }
     }
 
-    if (food_timer > FOOD_TIME * FRAMERATE) {
+    if (food_timer > FOODTIME * FRAMERATE) {
         create_food(1);
         food_timer = -1;
     }
@@ -162,7 +165,7 @@ int engine_step(void)
         grid[food_item->y_pos][food_item->x_pos] = food_item->symbol;
     }
 
-    if (score_timer > SCORE_TIME * FRAMERATE) {
+    if (score_timer > SCORETIME * FRAMERATE) {
         score += cnake_length;
         score_timer = -1;
     }
@@ -177,25 +180,22 @@ int engine_step(void)
 unsigned long engine_kill(void)
 {
     screen_kill();
-
     return score;
 }
 
 static void grid_clear(void)
 {
-    for (int i = 0; i < SHEIGHT*SWIDTH; ++i) {
-        grid[i/SWIDTH][i%SWIDTH] = ' ';
-    }
+    for (int i = 0; i < SHEIGHT * SWIDTH; ++i)
+        grid[i / SWIDTH][i % SWIDTH] = ' ';
 }
 
 static void create_food(int number)
 {
-
     for (int i = 0; food_array_ptr < MAXFOOD && i < number; ++i) {
         int y, x;
         do {
-            y = rand()%SHEIGHT;
-            x = rand()%SWIDTH;
+            y = rand() % SHEIGHT;
+            x = rand() % SWIDTH;
         } while (is_snake(y, x));
 
         struct Food *food_item = (struct Food *)malloc(sizeof(struct Food));
@@ -213,9 +213,8 @@ static void delete_food(int y_pos, int x_pos)
 
     while (temp_ptr < food_array_ptr) {
         if (food_array[temp_ptr]->y_pos == y_pos
-         && food_array[temp_ptr]->x_pos == x_pos) {
+         && food_array[temp_ptr]->x_pos == x_pos)
             break;
-        }
         ++temp_ptr;
     }
 
@@ -229,11 +228,10 @@ static void delete_food(int y_pos, int x_pos)
 
 static int is_solid(int y_pos, int x_pos)
 {
-    if (y_pos < 0 || y_pos >= SHEIGHT || x_pos < 0 || x_pos >= SWIDTH) {
+    if (y_pos < 0 || y_pos >= SHEIGHT || x_pos < 0 || x_pos >= SWIDTH)
         return 1;
-    } else if (is_snake(y_pos, x_pos)) {
+    else if (is_snake(y_pos, x_pos))
         return 1;
-    }
 
     return 0;
 }
@@ -254,11 +252,9 @@ static int is_snake(int y_pos, int x_pos)
 
 static int is_food(int y_pos, int x_pos)
 {
-    for (int i=0; i<food_array_ptr; ++i) {
-        if (food_array[i]->y_pos == y_pos && food_array[i]->x_pos == x_pos) {
+    for (int i = 0; i < food_array_ptr; ++i)
+        if (food_array[i]->y_pos == y_pos && food_array[i]->x_pos == x_pos)
             return 1;
-        }
-    }
 
     return 0;
 }

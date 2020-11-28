@@ -6,28 +6,21 @@
  * Classic snake, but with a c.
  */
 
-#include <unistd.h>
-#include <stdbool.h>
 #include <stdio.h>
+#include <unistd.h>
 
-#include "includes.h"
+#include "config.h"
 #include "engine.h"
 
 #define FRAMESLEEP(X) usleep(1000000/X)
 
-int main(int argc, char **argv)
+int main(void)
 {
     engine_setup();
 
-    bool gameover = false;
-    while (!gameover) {
-        gameover = !engine_step();
+    while (engine_step())
         FRAMESLEEP(FRAMERATE);
-    }
 
-    int score = engine_kill();
-
-    printf("Gameover! Your final score was: %d\n", score);
-
+    printf("Gameover! Your final score was: %ld\n", engine_kill());
     return 0;
 }

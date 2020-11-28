@@ -3,7 +3,7 @@
 
 #include <ncurses.h>
 
-#include "includes.h"
+#include "config.h"
 #include "screen.h"
 
 void screen_setup(void)

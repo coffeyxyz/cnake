@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0
 // Copyright (C) 2020 Robert Coffey
 
-#include "includes.h"
+#include "config.h"
 
 void engine_setup(void);
 int engine_step(void);
