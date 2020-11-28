@@ -17,17 +17,17 @@
 
 int main(int argc, char **argv)
 {
-	engine_setup();
+    engine_setup();
 
-	bool gameover = false;
-	while (!gameover) {
-		gameover = !engine_step();
-		FRAMESLEEP(FRAMERATE);
-	}
+    bool gameover = false;
+    while (!gameover) {
+        gameover = !engine_step();
+        FRAMESLEEP(FRAMERATE);
+    }
 
-	int score = engine_kill();
+    int score = engine_kill();
 
-	printf("Gameover! Your final score was: %d\n", score);
+    printf("Gameover! Your final score was: %d\n", score);
 
-	return 0;
+    return 0;
 }
