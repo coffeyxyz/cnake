@@ -1,10 +1,9 @@
-// SPDX-License-Identifier: GPL-2.0
-// Copyright (C) 2020 Robert Coffey
-/**
- * --- cnake ---
+/* --- cnake ---
  *
- * Classic snake, but with a c.
- */
+ * Classic snake game, but with a c.
+ *
+ * Copyright (C) 2020 Robert Coffey
+ * Licensed under the GNU GPLv2 */
 
 #include <stdio.h>
 #include <unistd.h>
