@@ -1,5 +1,5 @@
 // Copyright (C) 2020 Robert Coffey
-// Licensed under the GNU GPLv2
+// Released under the GPLv2 license
 
 #define SWIDTH    20 // Game grid width
 #define SHEIGHT   10 // Game grid height
