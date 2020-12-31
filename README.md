@@ -1,6 +1,6 @@
 # cnake
 
-Snake game.
+Classic Snake, but with a C.
 
 ## Installation
 
@@ -15,7 +15,6 @@ make
 cnake can be configured using the `src/includes.h` source file, be sure to
 rebuild using `make` should you make any changes.
 
-To play cnake, execute the `cnake` file.
 ```bash
 ./cnake
 ```
@@ -38,9 +37,9 @@ To play cnake, execute the `cnake` file.
 
 Copyright (C) 2020 Robert Coffey
 
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License version 2 as published by the Free
-Software Foundation.
+This is free software: you can redistribute it and/or modify it under the terms
+of the GNU General Public License version 2 as published by the Free Software
+Foundation.
 
 You should have received a copy of the GNU General Public License version 2
-along with this program. If not, see <https://www.gnu.org/licenses/gpl-2.0>.
+along with this software. If not, see <https://www.gnu.org/licenses/gpl-2.0>.
