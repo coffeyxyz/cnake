@@ -1,6 +1,6 @@
 # cnake
 
-Classic Snake, but with a C.
+Classic Snake, but with a C
 
 ## Installation
 
@@ -12,12 +12,12 @@ make
 
 ## Usage
 
-cnake can be configured using the `src/includes.h` source file, be sure to
-rebuild using `make` should you make any changes.
-
 ```bash
 ./cnake
 ```
+
+**Note:** cnake can be configured within `src/includes.h`, rebuild using `make`
+should you make any changes.
 
 ## Controls
 
@@ -28,10 +28,9 @@ rebuild using `make` should you make any changes.
 
 ## Dependencies
 
-- GNU C compiler
-- NCurses library
-
-**Note:** The NCurses library is typically shipped with the GNU C Compiler.
+- GCC
+- Make
+- NCurses
 
 ## License
 
