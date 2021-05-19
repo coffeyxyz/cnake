@@ -42,7 +42,7 @@ void engine_setup(void)
 
 	srand(clock());
 
-	head = (struct PlayerNode *)malloc(sizeof(struct PlayerNode));
+	head = malloc(sizeof(struct PlayerNode));
 	head->y_pos = 0;
 	head->x_pos = 0;
 	head->next = NULL;
