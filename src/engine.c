@@ -112,7 +112,7 @@ int engine_step(void)
 
 	/* Next cell becomes new head, with the old head as it's next node. */
 	{
-		struct PlayerNode *temp = (struct PlayerNode *)malloc(sizeof(struct PlayerNode));
+		struct PlayerNode *temp = malloc(sizeof(struct PlayerNode));
 		temp->y_pos = y_next;
 		temp->x_pos = x_next;
 		temp->next = head;
@@ -206,7 +206,7 @@ static void create_food(int number)
 			x = rand() % SCR_WIDTH;
 		} while (is_snake(y, x));
 
-		struct Food *food_item = (struct Food *)malloc(sizeof(struct Food));
+		struct Food *food_item = malloc(sizeof(struct Food));
 		(*food_item).y_pos = y;
 		(*food_item).x_pos = x;
 		(*food_item).symbol = 'F';
