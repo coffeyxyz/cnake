@@ -35,6 +35,14 @@ static unsigned long score = 0;
 static unsigned int cnake_length = 1;
 static unsigned int score_timer = 0;
 
+static void grid_clear(void);
+static void create_food(int number);
+static void delete_food(int y_pos, int x_pos);
+
+static int is_solid(int y_pos, int x_pos);
+static int is_snake(int y_pos, int x_pos);
+static int is_food(int y_pos, int x_pos);
+
 void engine_setup(void)
 {
 	grid_clear();
