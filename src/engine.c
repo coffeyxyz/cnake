@@ -67,22 +67,10 @@ int engine_step(void)
 		}
 		else {
 			switch (direction) {
-				case 'w' :
-					if (ch != 's')
-						direction = ch;
-					break;
-				case 'a' :
-					if (ch != 'd')
-						direction = ch;
-					break;
-				case 's' :
-					if (ch != 'w')
-						direction = ch;
-					break;
-				case 'd' :
-					if (ch != 'a')
-						direction = ch;
-					break;
+				case 'w' : if (ch != 's') direction = ch; break;
+				case 'a' : if (ch != 'd') direction = ch; break;
+				case 's' : if (ch != 'w') direction = ch; break;
+				case 'd' : if (ch != 'a') direction = ch; break;
 			}
 		}
 	}
@@ -91,18 +79,10 @@ int engine_step(void)
 	int x_next = head->x_pos;
 
 	switch (direction) {
-		case 'w' :
-			y_next -= 1;
-			break;
-		case 'a' :
-			x_next -= 1;
-			break;
-		case 's' :
-			y_next += 1;
-			break;
-		case 'd' :
-			x_next += 1;
-			break;
+		case 'w' : y_next -= 1; break;
+		case 'a' : x_next -= 1; break;
+		case 's' : y_next += 1; break;
+		case 'd' : x_next += 1; break;
 	}
 
 	/* If the next element is wall or cnake, gameover. */
@@ -141,18 +121,10 @@ int engine_step(void)
 		grid_clear();
 
 		switch (direction) {
-			case 'w':
-				grid[head->y_pos][head->x_pos] = 'A';
-				break;
-			case 'a':
-				grid[head->y_pos][head->x_pos] = '<';
-				break;
-			case 's':
-				grid[head->y_pos][head->x_pos] = 'V';
-				break;
-			case 'd':
-				grid[head->y_pos][head->x_pos] = '>';
-				break;
+			case 'w': grid[head->y_pos][head->x_pos] = 'A'; break;
+			case 'a': grid[head->y_pos][head->x_pos] = '<'; break;
+			case 's': grid[head->y_pos][head->x_pos] = 'V'; break;
+			case 'd': grid[head->y_pos][head->x_pos] = '>'; break;
 		}
 
 		struct PlayerNode *temp = head->next;
@@ -253,8 +225,7 @@ static int is_snake(int y_pos, int x_pos)
 		case '>':
 		case '+':
 			return 1;
-		default:
-			return 0;
+		default: return 0;
 	}
 }
 
