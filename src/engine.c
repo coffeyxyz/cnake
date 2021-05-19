@@ -162,7 +162,7 @@ int engine_step(void)
 		}
 	}
 
-	if (food_timer > TIME_FOOD * FRAMERATE) {
+	if (food_timer > TIME_FOOD * FRAME_RATE) {
 		create_food(1);
 		food_timer = -1;
 	}
@@ -173,7 +173,7 @@ int engine_step(void)
 		grid[food_item->y_pos][food_item->x_pos] = food_item->symbol;
 	}
 
-	if (score_timer > TIME_SCORE * FRAMERATE) {
+	if (score_timer > TIME_SCORE * FRAME_RATE) {
 		score += cnake_length;
 		score_timer = -1;
 	}

@@ -4,7 +4,7 @@
 #define SCR_WIDTH	20	// Game grid width
 #define SCR_HEIGHT	10	// Game grid height
 
-#define FRAMERATE	10	// Number of frames per second, also, gamespeed
+#define FRAME_RATE	10	// Number of frames per second, also, gamespeed
 
 #define FOOD_START	1	// Pieces of food on screen at the start
 #define FOOD_MAX	1	// Maximum pieces of food allowed on screen
