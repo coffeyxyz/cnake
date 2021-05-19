@@ -1,23 +1,33 @@
-# Copyright (C) 2020 Robert Coffey
+# Copyright (C) 2020-2021 Robert Coffey
 # Released under the GPLv2 license
 
-CC=gcc
-LIBS=-lncurses
+EXEC := cnake
 
-SRCS=$(wildcard src/*.c)
-OBJS=$(SRCS:%.c=%.o)
-PROG=cnake
+SRC_DIR := src
+OBJ_DIR := obj
 
-all: $(OBJS)
-	$(CC) $(OBJS) -o $(PROG) $(LIBS)
+SRCS := $(wildcard $(SRC_DIR)/*.c)
+OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-%.o: %.c
-	$(CC) -c -o $@ $< $(LIBS)
+CC := gcc
+CFLAGS := -Wall -Wextra -Wpedantic
+LIBS := -lncurses
+
+all: $(EXEC)
+
+$(EXEC): $(OBJS)
+	$(CC) -o $@ $^ $(LIBS)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) -o $@ $(CFLAGS) -c $<
+
+$(OBJ_DIR):
+	@mkdir -p $@
 
 .PHONY: clean
 clean:
-	rm -f src/*.o
+	@rm -frv $(OBJ_DIR)
 
-.PHONY: uninstall
-uninstall:
-	rm -f src/*.o $(PROG)
+.PHONY: remove
+remove:
+	@rm -frv $(OBJ_DIR) $(EXEC)
