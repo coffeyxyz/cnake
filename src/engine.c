@@ -22,7 +22,7 @@ struct Food {
 	char symbol;
 };
 
-static char grid[SCR_HEIGHT][SCR_WIDTH];
+static char grid[GRID_HEIGHT][GRID_WIDTH];
 
 static struct PlayerNode *head;
 static char direction = 'd';
@@ -193,8 +193,8 @@ unsigned long engine_kill(void)
 
 static void grid_clear(void)
 {
-	for (int i = 0; i < SCR_HEIGHT * SCR_WIDTH; ++i)
-		grid[i / SCR_WIDTH][i % SCR_WIDTH] = ' ';
+	for (int i = 0; i < GRID_HEIGHT * GRID_WIDTH; ++i)
+		grid[i / GRID_WIDTH][i % GRID_WIDTH] = ' ';
 }
 
 static void create_food(int number)
@@ -202,8 +202,8 @@ static void create_food(int number)
 	for (int i = 0; food_array_ptr < FOOD_MAX && i < number; ++i) {
 		int y, x;
 		do {
-			y = rand() % SCR_HEIGHT;
-			x = rand() % SCR_WIDTH;
+			y = rand() % GRID_HEIGHT;
+			x = rand() % GRID_WIDTH;
 		} while (is_snake(y, x));
 
 		struct Food *food_item = malloc(sizeof(struct Food));
@@ -236,7 +236,7 @@ static void delete_food(int y_pos, int x_pos)
 
 static int is_solid(int y_pos, int x_pos)
 {
-	if (y_pos < 0 || y_pos >= SCR_HEIGHT || x_pos < 0 || x_pos >= SCR_WIDTH)
+	if (y_pos < 0 || y_pos >= GRID_HEIGHT || x_pos < 0 || x_pos >= GRID_WIDTH)
 		return 1;
 	else if (is_snake(y_pos, x_pos))
 		return 1;

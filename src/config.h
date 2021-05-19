@@ -9,8 +9,8 @@
 
 #define FRAME_RATE	10	// Number of frames per second, also, gamespeed
 
-#define SCR_HEIGHT	10	// Game grid height
-#define SCR_WIDTH	20	// Game grid width
+#define GRID_HEIGHT	10	// Game grid height
+#define GRID_WIDTH	20	// Game grid width
 
 #define TIME_FOOD	0	// Number of seconds between each food spawn
 #define TIME_SCORE	1	// Number of seconds between incrementing score

@@ -19,27 +19,27 @@ void screen_setup(void)
 	printw("Score: ");
 
 	move(1,0);
-	for (int i = 0; i < SCR_WIDTH+2; ++i) {
+	for (int i = 0; i < GRID_WIDTH+2; ++i) {
 		addch('#');
 	}
-	move(SCR_HEIGHT+2, 0);
-	for (int i = 0; i < SCR_WIDTH+2; ++i) {
+	move(GRID_HEIGHT+2, 0);
+	for (int i = 0; i < GRID_WIDTH+2; ++i) {
 		addch('#');
 	}
-	for (int i = 0; i < SCR_HEIGHT; ++i) {
+	for (int i = 0; i < GRID_HEIGHT; ++i) {
 		mvaddch(i+2, 0, '#');
-		mvaddch(i+2, SCR_WIDTH+1, '#');
+		mvaddch(i+2, GRID_WIDTH+1, '#');
 	}
 }
 
-void screen_update(char chars[SCR_HEIGHT][SCR_WIDTH], int score)
+void screen_update(char chars[GRID_HEIGHT][GRID_WIDTH], int score)
 {
 	move(0, 7);
 	printw("%d", score);
 
-	for (int row = 0; row < SCR_HEIGHT; ++row) {
+	for (int row = 0; row < GRID_HEIGHT; ++row) {
 		move(row+2, 1);
-		for (int col = 0; col < SCR_WIDTH; ++col) {
+		for (int col = 0; col < GRID_WIDTH; ++col) {
 			addch(chars[row][col]);
 		}
 	}
