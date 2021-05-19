@@ -28,7 +28,7 @@ static struct PlayerNode *head;
 static char direction = 'd';
 
 static struct Food *food_array[MAXFOOD];
-static unsigned int food_array_ptr = 0;
+static size_t food_array_ptr = 0;
 static unsigned int food_timer = 0;
 
 static unsigned long score = 0;
@@ -168,7 +168,7 @@ int engine_step(void)
 	}
 
 	/* Update food cells. */
-	for (int i = 0; i < food_array_ptr; ++i) {
+	for (size_t i = 0; i < food_array_ptr; ++i) {
 		struct Food *food_item = food_array[i];
 		grid[food_item->y_pos][food_item->x_pos] = food_item->symbol;
 	}
@@ -217,7 +217,7 @@ static void create_food(int number)
 
 static void delete_food(int y_pos, int x_pos)
 {
-	int temp_ptr = 0;
+	size_t temp_ptr = 0;
 
 	while (temp_ptr < food_array_ptr) {
 		if (food_array[temp_ptr]->y_pos == y_pos
@@ -260,7 +260,7 @@ static int is_snake(int y_pos, int x_pos)
 
 static int is_food(int y_pos, int x_pos)
 {
-	for (int i = 0; i < food_array_ptr; ++i)
+	for (size_t i = 0; i < food_array_ptr; ++i)
 		if (food_array[i]->y_pos == y_pos && food_array[i]->x_pos == x_pos)
 			return 1;
 
