@@ -32,7 +32,7 @@ should you make any changes.
 
 ## Dependencies
 
-- NCurses
+- ncurses
 
 
 ## License
