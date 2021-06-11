@@ -18,8 +18,8 @@ make
 ./cnake
 ```
 
-**Note:** cnake can be configured within `src/includes.h`, rebuild
-should you make any changes.
+**Note:** cnake can be configured within `src/includes.h`, rebuild should you
+make any changes.
 
 
 ## Controls
@@ -39,10 +39,10 @@ should you make any changes.
 
 Copyright (C) 2020-2021 Robert Coffey
 
-This is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License version 2 as published by
-the Free Software Foundation.
+This is free software: you can redistribute it and/or modify it under the terms
+of the GNU General Public License version 2 as published by the Free Software
+Foundation.
 
-You should have received a copy of the GNU General Public License
-version 2 along with this software. If not, see
+You should have received a copy of the GNU General Public License version 2
+along with this software. If not, see
 [GPLv2 license](https://www.gnu.org/licenses/gpl-2.0).
