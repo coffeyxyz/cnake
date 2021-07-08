@@ -1,15 +1,18 @@
 # cnake
 
+## Description
+
 Classic Snake, but with a C.
 
 
 ## Installation
 
 ```bash
-git clone https://github.com/coffeyxyz/cnake.git
-cd cnake
 make
 ```
+
+**Note:** cnake can be configured within `src/config.h`, the program must be
+recompiled for changes to take effect.
 
 
 ## Usage
@@ -18,16 +21,13 @@ make
 ./cnake
 ```
 
-**Note:** cnake can be configured within `src/includes.h`, rebuild should you
-make any changes.
-
 
 ## Controls
 
 - `WASD` - Turn the cnake
-- `CTRL+S` - Freeze the terminal
-- `CTRL+Q` - Unfreeze the terminal
-- `CTRL+C` - Exit cnake
+- `<C-s>` - Freeze the terminal
+- `<C-q>` - Unfreeze the terminal
+- `<C-c>` - Exit cnake
 
 
 ## Dependencies
