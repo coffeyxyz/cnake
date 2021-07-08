@@ -5,7 +5,9 @@
 Classic Snake, but with a C.
 
 
-## Installation
+## Instructions
+
+### Installation
 
 ```bash
 make
@@ -14,15 +16,13 @@ make
 **Note:** cnake can be configured within `src/config.h`, the program must be
 recompiled for changes to take effect.
 
-
-## Usage
+### Usage
 
 ```bash
 ./cnake
 ```
 
-
-## Controls
+### Controls
 
 - `WASD` - Turn the cnake
 - `<C-s>` - Freeze the terminal
